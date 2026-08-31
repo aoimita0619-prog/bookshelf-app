@@ -11,7 +11,7 @@ class GenruRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class GenruRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'content' => 'request|unique:genrus'
+        ];
+    }
+
+     public function messages()
+    {
+        return[
+            'content.required' => 'ジャンルを入力してください',
+            'content.unique' => 'すでに登録されているジャンルです',
         ];
     }
 }

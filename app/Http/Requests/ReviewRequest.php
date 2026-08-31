@@ -11,7 +11,7 @@ class ReviewRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class ReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'value' => 'required|integer|between:1,5',
+        ];
+    }
+
+     public function messages()
+    {
+        return[
+            'value.required' => '評価をしてください',
         ];
     }
 }
