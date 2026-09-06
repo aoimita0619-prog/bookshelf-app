@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->bigInteger('ISBN');
-            $table->date('publish_date');
-            $table->string('detail')->nullable();
-            $table->string('img')->nullable();
+            $table->string('ISBN');
+            $table->date('published_date');
+            $table->string('description')->nullable();
+            $table->string('image_url')->nullable();
+             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
