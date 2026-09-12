@@ -5,6 +5,8 @@
 @csrf
 <div class="space-y-6">
     <!-- タイトル -->
+     <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
     <div>
         <label for="title" class="block font-medium text-sm text-gray-700 mb-1">
             タイトル <span class="text-red-500">*</span>
@@ -111,4 +113,5 @@
             <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
         @enderror
     </div>
+   </form>
 </div>

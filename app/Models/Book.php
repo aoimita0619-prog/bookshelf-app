@@ -31,8 +31,16 @@ class Book extends Model
     public function scopeKeywordSearch($query, $keyword)
     {
         if (!empty($keyword)) {
-        $query->where('title', 'like', '%' . $keyword . '%');
+        $query->where('title', 'like', '%' . $keyword . '%')
+             ->orWhere('author', 'like', '%' . $keyword . '%');
         }
         return $query;
     }
+
+    public function scopeGenreSearch($query, $genreId)
+{
+    return $query->whereHas('genres', function ($query) use ($genreId) {
+        $query->where('genres.id', $genreId);
+    });
+}
 }
