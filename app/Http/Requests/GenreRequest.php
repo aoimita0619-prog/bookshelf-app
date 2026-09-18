@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GenruRequest extends FormRequest
+class GenreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,16 +21,17 @@ class GenruRequest extends FormRequest
      */
     public function rules(): array
     {
+        $genre = $this->route('genre');
         return [
-            'content' => 'request|unique:genrus'
+            'name' => 'required|unique:genres,name,'. $genre->id,
         ];
     }
 
      public function messages()
     {
         return[
-            'content.required' => 'ジャンルを入力してください',
-            'content.unique' => 'すでに登録されているジャンルです',
+            'name.required' => 'ジャンルを入力してください',
+            'name.unique' => 'すでに登録されているジャンルです',
         ];
     }
 }

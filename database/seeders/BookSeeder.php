@@ -17,7 +17,7 @@ class BookSeeder extends Seeder
         $books = [[
             'title' => '吾輩は猫である',
             'author' => '夏目漱石',
-            'ISBN' =>'9784101010014',
+            'isbn' =>'9784101010014',
             'published_date' => '1905-01-01',
             'user_id' => '1',
             'genres' => [1],
@@ -25,7 +25,7 @@ class BookSeeder extends Seeder
         [
             'title' => '人を動かす',
             'author' => 'D・カーネギー',
-            'ISBN' =>'9784422100524',
+            'isbn' =>'9784422100524',
             'published_date' => '1936-10-01',
             'user_id' => '1',
             'genres' => [2,4],
@@ -33,7 +33,7 @@ class BookSeeder extends Seeder
         [
             'title' => 'リーダブルーコード',
             'author' => 'Dustin Boswell',
-            'ISBN' =>'9784873115658',
+            'isbn' =>'9784873115658',
             'published_date' => '2012-06-23',
             'user_id' => '1',
             'genres' => [3],
@@ -41,7 +41,7 @@ class BookSeeder extends Seeder
         [
             'title' => '七つの習慣',
             'author' => 'スティーブン・R・コヴィー',
-            'ISBN' =>'9784863940246',
+            'isbn' =>'9784863940246',
             'published_date' => '2013-08-30',
             'user_id' => '1',
             'genres' => [2,4],
@@ -49,7 +49,7 @@ class BookSeeder extends Seeder
         [
             'title' => '坊ちゃん',
             'author' => '夏目漱石',
-            'ISBN' =>'9784101010021',
+            'isbn' =>'9784101010021',
             'published_date' => '1906-04-01',
             'user_id' => '1',
             'genres' => [1],
@@ -57,7 +57,7 @@ class BookSeeder extends Seeder
         [
             'title' => 'サピエンス全史',
             'author' => 'ユヴァル・ノア・ハラリ',
-            'ISBN' =>'9784309226712',
+            'isbn' =>'9784309226712',
             'published_date' => '2016-09-08',
             'user_id' => '1',
             'genres' => [6,7],
@@ -65,7 +65,7 @@ class BookSeeder extends Seeder
         [
             'title' => 'Clean Code',
             'author' => ' Robert C. Martin',
-            'ISBN' =>'9784048930598',
+            'isbn' =>'9784048930598',
             'published_date' => '2017-12-18',
             'user_id' => '1',
             'genres' => [3],
@@ -73,7 +73,7 @@ class BookSeeder extends Seeder
         [
             'title' => '嫌われる勇気',
             'author' => '岸見一郎・古賀史健',
-            'ISBN' =>'9784048930598',
+            'isbn' =>'9784048930598',
             'published_date' => '2017-12-18',
             'user_id' => '1',
             'genres' => [4],
@@ -81,7 +81,7 @@ class BookSeeder extends Seeder
         [
             'title' => '火花',
             'author' => '又吉直樹',
-            'ISBN' =>'9784163902302',
+            'isbn' =>'9784163902302',
             'published_date' => '2015-03-11',
             'user_id' => '1',
             'genres' => [1],
@@ -89,7 +89,7 @@ class BookSeeder extends Seeder
         [
             'title' => 'FACTFULNESS',
             'author' => 'ハンス・ロスリング',
-            'ISBN' =>'9784822289607',
+            'isbn' =>'9784822289607',
             'published_date' => '2019-01-11',
             'user_id' => '1',
             'genres' => [2,7],
@@ -97,7 +97,7 @@ class BookSeeder extends Seeder
         [
             'title' => 'コンテナ物語',
             'author' => 'マルク・レビンソン',
-            'ISBN' =>'9784822251468',
+            'isbn' =>'9784822251468',
             'published_date' => '2007-01-18',
             'user_id' => '1',
             'genres' => [2,6],

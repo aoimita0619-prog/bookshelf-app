@@ -22,14 +22,14 @@ class ReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'value' => 'required|integer|between:1,5',
+            'rating' => 'required|integer|between:1,5',
         ];
     }
 
      public function messages()
     {
         return[
-            'value.required' => '評価をしてください',
+            'rating.required' => '評価をしてください',
         ];
     }
 }

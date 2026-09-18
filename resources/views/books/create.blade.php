@@ -10,6 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <form action="{{ route('books.store') }}" method="POST" novalidate>
+                        @csrf
                         @include('books._form')
 
                         <div class="flex items-center justify-end mt-6 pt-6 border-t border-gray-200">

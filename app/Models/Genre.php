@@ -12,7 +12,7 @@ class Genre extends Model
      use HasFactory;
     
     protected $fillable = [
-        'content',
+        'name',
     ];
 
     public function books()

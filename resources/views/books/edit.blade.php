@@ -10,6 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <form action="{{ route('books.update', $book) }}" method="POST" novalidate>
+                        @csrf
                         @method('PUT')
                         @include('books._form')
 

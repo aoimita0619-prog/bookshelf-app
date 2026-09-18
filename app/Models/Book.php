@@ -12,10 +12,11 @@ class Book extends Model
      protected $fillable = [
         'title',
         'author',
-        'ISBN',
-        'publish_date',
-        'detail',
-        'img',
+        'isbn',
+        'published_date',
+        'description',
+        'user_id',
+        'image_url',
     ];
 
     public function genres()
@@ -26,6 +27,11 @@ class Book extends Model
      public function favoriteUsers()
     {
         return $this->belongsToMany(User::class, 'favorites');
+    }
+
+    public function reviews()
+    {
+    return $this->hasMany(Review::class);
     }
 
     public function scopeKeywordSearch($query, $keyword)

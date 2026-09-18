@@ -21,13 +21,15 @@ class BookRequest extends FormRequest
      */
     public function rules(): array
     {
+        $book = $this->route('book');
+
         return [
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
-            'ISBN' => 'required|regex:/^[0-9]{10,13}$/|unique:books',
+            'isbn' => 'required|regex:/^[0-9]{10,13}$/|unique:books,isbn,' . $book->id,
             'published_date' => 'required|date',
-            'genru_id' => 'required',
-            'img' => 'nullable|url'
+            'genres' => 'required|array',
+            'image_url' => 'nullable|url'
         ];
     }
 
@@ -36,9 +38,11 @@ class BookRequest extends FormRequest
         return[
             'title.required' => 'タイトルを入力してください',
             'author.required' => '著者を入力してください',
-            'ISBN.required' => 'ISBNを入力してください',
-            'ISBN.regex' => '13桁で入力してください'
+            'isbn.required' => 'ISBNを入力してください',
+            'isbn.regex' => '13桁で入力してください',
+            'isbn.unique' => 'すでに登録されています',
             'published_date.required' => '出版日を選択してください',
+            'genres.required' => 'ジャンルを選択してください' 
         ];
     }
 

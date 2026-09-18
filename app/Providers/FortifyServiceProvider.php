@@ -60,6 +60,5 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.register');
         });
 
-        app()->bind(FortifyLoginRequest::class, LoginRequest::class);
     }
 }
