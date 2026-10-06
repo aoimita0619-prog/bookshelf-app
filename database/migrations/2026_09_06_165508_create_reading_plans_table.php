@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('book_id')->constrained()->onDelete('cascade');
             $table->date('target_date');
-            $table->date('completed_at');
+            $table->date('completed_at')->nullable();
+            $table->string('status')->default('want_to_read');
             $table->timestamps();
         });
     }

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\ReadingPlan;
 
 class User extends Authenticatable
 {
@@ -46,10 +47,14 @@ class User extends Authenticatable
 
     public function favoriteBooks()
     {
-    return $this->belongsToMany(Book::class, 'favorites');
+        return $this->belongsToMany(Book::class, 'favorites');
+    }
+    public function readingPlans()
+    {
+        return $this->hasMany(ReadingPlan::class, 'readingPlans');
     }
 
    public function likedReviews() { 
-    return $this->belongsToMany(Review::class, 'review_likes'); 
+        return $this->belongsToMany(Review::class, 'review_likes'); 
    }
 }

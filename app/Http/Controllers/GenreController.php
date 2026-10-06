@@ -6,6 +6,7 @@ use App\Models\Book;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\GenreRequest;
+use App\Http\Requests\GenreEditRequest;
 
 class GenreController extends Controller
 {
@@ -46,7 +47,7 @@ class GenreController extends Controller
         return view('genres.edit',compact('genre'));
     }
 
-     public function update(GenreRequest $request, Genre $genre)
+     public function update(GenreEditRequest $request, Genre $genre)
     {
         $genre->update($request->only([
           'name',

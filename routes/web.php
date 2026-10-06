@@ -11,6 +11,9 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RankingController;
 use App\Http\Controllers\ReviewLikeController;
 
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +30,9 @@ Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/ranking', [RankingController::class, 'index'])->name('ranking.index');
 
 
+
 Route::middleware('auth')->group(function(){
+    Route::get('/books/isbn/{isbn}', [BookController::class, 'isbnSearch'])->name('books.isbn');
     Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
     Route::post('/books/create', [BookController::class, 'store'])->name('books.store');
     Route::get('/books/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
@@ -42,20 +47,27 @@ Route::middleware('auth')->group(function(){
     Route::delete('/genres/{genre}/delete', [GenreController::class, 'delete'])->name('genres.destroy');
     Route::get('/reviews', [ReviewController::class, 'index']) ->name('reviews.index'); 
     Route::post('/books/{book}/review', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
+    Route::put('/books/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+    Route::delete('/books/{review}/delete', [ReviewController::class, 'delete'])->name('reviews.destroy');
     Route::post('/reviews/{review}/like', [ReviewLikeController::class, 'toggle'])
     ->name('reviews.like');
-    Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
     Route::get('/favorites', [FavoriteController::class, 'index']) ->name('favorites.index'); 
     Route::post('/favorites/{book}', [FavoriteController::class, 'toggle']) ->name('favorites.toggle');
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
     Route::get('/reading-plans', [ReadingPlanController::class, 'index'])->name('reading-plans.index');
     Route::get('/reading-plans/create', [ReadingPlanController::class, 'create'])->name('reading-plans.create');
+    Route::post('/reading-plans', [ReadingPlanController::class, 'store'])->name('reading-plans.store');
     Route::get('/reading-plans/{plan}/edit', [ReadingPlanController::class, 'edit'])->name('reading-plans.edit');
+    Route::put('/reading-plans/{plan}', [ReadingPlanController::class, 'update'])->name('reading-plans.update');
+    Route::post('/reading-plans/{plan}/complete', [ReadingPlanController::class, 'complete'])->name('reading-plans.complete');
+    Route::delete('/reading-plans/{plan}', [ReadingPlanController::class, 'delete']) ->name('reading-plans.destroy');
     Route::get('/notifications', [NotificationController::class, 'edit'])->name('notifications.index');
 });
 
     Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
-
+    
+    
 
 
 

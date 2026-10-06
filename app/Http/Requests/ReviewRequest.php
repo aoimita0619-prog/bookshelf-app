@@ -23,6 +23,7 @@ class ReviewRequest extends FormRequest
     {
         return [
             'rating' => 'required|integer|between:1,5',
+            'comment' => 'required',
         ];
     }
 
@@ -30,6 +31,7 @@ class ReviewRequest extends FormRequest
     {
         return[
             'rating.required' => '評価をしてください',
+            'comment.required' => 'コメントを入力してください',
         ];
     }
 }

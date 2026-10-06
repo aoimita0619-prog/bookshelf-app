@@ -31,7 +31,12 @@ class Book extends Model
 
     public function reviews()
     {
-    return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class);
+    }
+
+    public function readingPlans()
+    {
+    return $this->hasMany(ReadingPlan::class);
     }
 
     public function scopeKeywordSearch($query, $keyword)

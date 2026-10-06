@@ -22,8 +22,9 @@ class GenreRequest extends FormRequest
     public function rules(): array
     {
         $genre = $this->route('genre');
+
         return [
-            'name' => 'required|unique:genres,name,'. $genre->id,
+            'name' => 'required|unique:genres,name,'
         ];
     }
 

@@ -18,6 +18,35 @@ class ReviewController extends Controller
             'rating' => $request->rating,
         ]);
 
-        return back();
+        return redirect()->route('books.show');
+    }
+
+     public function delete($id)
+    {
+        $this->authorize('update', $review);
+
+        Review::findOrFail($id)->delete();
+        return redirect()->route('books.show');
+    }
+    
+
+    public function edit(Review $review){  
+ 
+        $this->authorize('update', $review);
+
+        return view('reviews.edit',compact('review'));
+    }
+
+     public function update(ReviewRequest $request, Review $review)
+    {
+        $this->authorize('update', $review);
+
+        $review->update($request->only([
+          'rating',
+          'comment',
+        ]));
+
+        return redirect()->route('books.show', $review->book_id);
+
     }
 }

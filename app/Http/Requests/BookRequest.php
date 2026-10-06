@@ -26,7 +26,7 @@ class BookRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
-            'isbn' => 'required|regex:/^[0-9]{10,13}$/|unique:books,isbn,' . $book->id,
+            'isbn' => 'required|regex:/^[0-9]{10,13}$/|unique:books,isbn,',
             'published_date' => 'required|date',
             'genres' => 'required|array',
             'image_url' => 'nullable|url'
