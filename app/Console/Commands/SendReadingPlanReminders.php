@@ -18,19 +18,16 @@ class SendReadingPlanReminders extends Command
     {
         $today = Carbon::today();
 
-        // 3日前
         $this->sendReminders(
             $today->copy()->addDays(3),
             'before_3_days'
         );
 
-        // 当日
         $this->sendReminders(
             $today,
             'today'
         );
 
-        // 3日後
         $this->sendReminders(
             $today->copy()->subDays(3),
             'after_3_days'
