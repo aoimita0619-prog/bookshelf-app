@@ -54,10 +54,10 @@ class BookController extends Controller
 
 public function isbnSearch($isbn)
 {
-  // ハイフン・空白を削除
+
     $isbn = str_replace(['-', ' '], '', $isbn);
 
-    // 13桁チェック
+
     if (!preg_match('/^\d{13}$/', $isbn)) {
         return response()->json([
             'error' => 'ISBNは13桁で入力してください。'
@@ -70,9 +70,9 @@ public function isbnSearch($isbn)
             ->get(
                 'https://www.googleapis.com/books/v1/volumes',
                 [
-                    // isbn: は使わない
                     'q' => $isbn,
-                    'maxResults' => 10,
+                    'maxResults' => 40,
+                    'country' => 'JP',
                     'key' => env('GOOGLE_BOOKS_API_KEY'),
                 ]
             );
@@ -91,7 +91,6 @@ public function isbnSearch($isbn)
             ], 404);
         }
 
-        // ISBNが一致する書籍を探す
         $volumeInfo = null;
 
         foreach ($data['items'] as $item) {
@@ -114,12 +113,12 @@ public function isbnSearch($isbn)
             ], 404);
         }
 
-        // 著者
+        
         $author = isset($volumeInfo['authors'])
             ? implode(', ', $volumeInfo['authors'])
             : '';
 
-        // 発売日
+        
         $publishedDate = $volumeInfo['publishedDate'] ?? '';
 
         if (preg_match('/^\d{4}$/', $publishedDate)) {

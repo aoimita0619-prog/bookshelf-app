@@ -62,7 +62,8 @@ Route::middleware('auth')->group(function(){
     Route::put('/reading-plans/{plan}', [ReadingPlanController::class, 'update'])->name('reading-plans.update');
     Route::post('/reading-plans/{plan}/complete', [ReadingPlanController::class, 'complete'])->name('reading-plans.complete');
     Route::delete('/reading-plans/{plan}', [ReadingPlanController::class, 'delete']) ->name('reading-plans.destroy');
-    Route::get('/notifications', [NotificationController::class, 'edit'])->name('notifications.index');
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('/notifications/{id}/read', [NotificationController::class, 'read'])->name('notifications.read');
 });
 
     Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
