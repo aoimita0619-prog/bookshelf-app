@@ -19,28 +19,31 @@ class BookController extends Controller
        $genres = Genre::all();
 
        $books = Book::query()
-        ->when($request->keyword, function ($query, $keyword) {
-            $query->keywordSearch($keyword);
-        })
-        ->when($request->genre, function ($query, $genreId) {
-            $query->genreSearch($genreId);
-        })
-        ->when($request->sort, function ($query, $sort) {
-            if ($sort === 'newest') {
-                $query->orderBy('created_at', 'desc');
-            } elseif ($sort === 'oldest') {
-                $query->orderBy('created_at', 'asc');
-            } elseif ($sort === 'rating') {
-                $query->withAvg('reviews', 'rating')
-                      ->orderBy('reviews_avg_rating', 'desc');
-            } elseif ($sort === 'title') {
-                $query->orderBy('title', 'asc');
-            }
-        })
-        ->with(['genres'])
-        ->withAvg('reviews', 'rating')
-        ->paginate(10)
-        ->withQueryString();
+    ->with(['genres'])
+    ->withAvg('reviews', 'rating')
+    ->when($request->keyword, function ($query, $keyword) {
+        $query->keywordSearch($keyword);
+    })
+    ->when($request->genre, function ($query, $genreId) {
+        $query->genreSearch($genreId);
+    })
+    ->when(
+        !$request->sort || in_array($request->sort, ['latest', 'newest']),
+        function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }
+    )
+    ->when($request->sort === 'oldest', function ($query) {
+        $query->orderBy('created_at', 'asc');
+    })
+    ->when($request->sort === 'rating', function ($query) {
+        $query->orderBy('reviews_avg_rating', 'desc');
+    })
+    ->when($request->sort === 'title', function ($query) {
+        $query->orderBy('title', 'asc');
+    })
+    ->paginate(10)
+    ->withQueryString();
 
         return view('books.index', compact('books', 'genres'));
     }
@@ -185,7 +188,7 @@ public function isbnSearch($isbn)
           'isbn',
           'description',
           'image_url',
-          'publish_date',
+          'published_date',
         ]));
 
          $book->genres()->sync($request->input('genres', []));

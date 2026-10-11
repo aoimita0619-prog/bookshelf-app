@@ -23,10 +23,13 @@ class GenreController extends Controller
         return view('genres.show', compact('books', 'genre'));
    }
 
-   public function delete($id)
+   public function delete(Genre $genre)
     {
-        Genre::findOrFail($id)->delete();
-        return redirect()->route('genres.index');
+
+    $genre->books()->detach();
+    $genre->delete();
+
+    return redirect()->route('genres.index');
     }
     
     public function create()

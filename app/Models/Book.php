@@ -41,10 +41,12 @@ class Book extends Model
 
     public function scopeKeywordSearch($query, $keyword)
     {
-        if (!empty($keyword)) {
-        $query->where('title', 'like', '%' . $keyword . '%')
-             ->orWhere('author', 'like', '%' . $keyword . '%');
-        }
+       if (!empty($keyword)) {
+        $query->where(function ($q) use ($keyword) {
+            $q->where('title', 'like', '%' . $keyword . '%')
+              ->orWhere('author', 'like', '%' . $keyword . '%');
+        });
+    }
         return $query;
     }
 

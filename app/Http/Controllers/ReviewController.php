@@ -18,35 +18,37 @@ class ReviewController extends Controller
             'rating' => $request->rating,
         ]);
 
-        return redirect()->route('books.show');
+        return redirect()->route('books.show', $book->id);
     }
 
-     public function delete($id)
+    public function delete(Review $review)
+    {
+        $this->authorize('delete', $review);
+
+        // 削除前に書籍IDを取得する
+        $bookId = $review->book_id;
+
+        $review->delete();
+
+        return redirect()->route('books.show', $bookId);
+    }
+
+    public function edit(Review $review)
     {
         $this->authorize('update', $review);
 
-        Review::findOrFail($id)->delete();
-        return redirect()->route('books.show');
-    }
-    
-
-    public function edit(Review $review){  
- 
-        $this->authorize('update', $review);
-
-        return view('reviews.edit',compact('review'));
+        return view('reviews.edit', compact('review'));
     }
 
-     public function update(ReviewRequest $request, Review $review)
+    public function update(ReviewRequest $request, Review $review)
     {
         $this->authorize('update', $review);
 
         $review->update($request->only([
-          'rating',
-          'comment',
+            'rating',
+            'comment',
         ]));
 
         return redirect()->route('books.show', $review->book_id);
-
     }
 }

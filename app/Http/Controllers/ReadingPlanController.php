@@ -73,11 +73,12 @@ class ReadingPlanController extends Controller
         return redirect()->route('reading-plans.index');
     }
 
-    public function delete($id)
+    public function delete(ReadingPlan $plan)
     {
-        ReadingPlan::findOrFail($id)->delete();
+        $this->authorize('delete', $plan);
+        $plan->delete();
 
-        return redirect()->route('reading-plans.index');
+        return redirect()->route('reading-plans.index');  
     }
 
     public function complete(ReadingPlan $plan)

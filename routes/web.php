@@ -48,8 +48,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/reviews', [ReviewController::class, 'index']) ->name('reviews.index'); 
     Route::post('/books/{book}/review', [ReviewController::class, 'store'])->name('reviews.store');
     Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
-    Route::put('/books/{review}', [ReviewController::class, 'update'])->name('reviews.update');
-    Route::delete('/books/{review}/delete', [ReviewController::class, 'delete'])->name('reviews.destroy');
+    Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+    Route::delete('/reviews/{review}/delete', [ReviewController::class, 'delete'])->name('reviews.destroy');
     Route::post('/reviews/{review}/like', [ReviewLikeController::class, 'toggle'])
     ->name('reviews.like');
     Route::get('/favorites', [FavoriteController::class, 'index']) ->name('favorites.index'); 
