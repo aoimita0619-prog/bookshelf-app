@@ -187,4 +187,53 @@ $response = $this->actingAs($user)
 $response->assertUnprocessable();
 $response->assertJsonValidationErrors(['genres']);
 }
+
+
+public function test_guest_cannot_create_book(): void
+{
+    $response = $this->postJson('/api/v1/books', [
+        'title' => 'テスト書籍',
+        'author' => 'テスト著者',
+        'isbn' => '9784003109038',
+        'published_date' => '2024-01-01',
+        'genres' => [],
+    ]);
+
+    $response->assertUnauthorized();
+}
+
+public function test_guest_cannot_update_book(): void
+{
+    $book = \App\Models\Book::factory()->create();
+
+    $response = $this->putJson(
+        "/api/v1/books/{$book->id}",
+        [
+            'title' => '更新後の書籍',
+            'author' => '更新後の著者',
+            'isbn' => '9784003109038',
+            'published_date' => '2024-01-01',
+            'genres' => [],
+        ]
+    );
+
+    $response->assertUnauthorized();
+}
+
+public function test_guest_cannot_delete_book(): void
+{
+    $book = \App\Models\Book::factory()->create();
+
+    $response = $this->deleteJson(
+        "/api/v1/books/{$book->id}"
+    );
+
+    $response->assertUnauthorized();
+
+    // 未認証のため、書籍が削除されていないことも確認
+    $this->assertDatabaseHas('books', [
+        'id' => $book->id,
+    ]);
+}
+
 }

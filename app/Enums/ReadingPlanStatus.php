@@ -6,12 +6,14 @@ enum ReadingPlanStatus: string
 {
     case In_Progress = 'in_progress';
     case Completed = 'completed';
+    case Expired = 'expired';
 
     public function label(): string
     {
         return match ($this) {
             self::In_Progress => '進行中',
             self::Completed => '読了',
+            self::Expired => '期限切れ',
         };
     }
 
@@ -20,6 +22,7 @@ enum ReadingPlanStatus: string
         return match ($this) {
             self::In_Progress => 'bg-gray-100 text-gray-800',
             self::Completed => 'bg-green-100 text-green-800',
+            self::Expired => 'bg-red-100 text-red-800',
         };
     }
 }

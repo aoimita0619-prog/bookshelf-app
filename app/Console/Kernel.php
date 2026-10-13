@@ -14,6 +14,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('reading-plans:send-reminders')
         ->dailyAt('09:00');
+        $schedule->command('reading-plans:expire')->dailyAt('00:05');
+
     }
 
     /**
