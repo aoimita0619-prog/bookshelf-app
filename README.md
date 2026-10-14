@@ -44,7 +44,7 @@
 
 
 ## ER図
-<img src="ER.drawio.svg" alt="ER図">
+<img src="ER.png" alt="ER図">
 
 ## テーブル設計
 - **usersテーブル　アカウントを記録するテーブル**
