@@ -26,7 +26,8 @@
 5. cp .env.example .env
 6. ./vendor/bin/sail up -d
 7. ./vendor/bin/sail artisan key:generate
-8. ./vendor/bin/sail artisan migrate --seed
+8. ./vendor/bin/sail artisan migrate:fresh --seed
+
 9. Google Cloudにおいて、新規プロジェクトを作成する。ライブラリからBooksAPIを有効にし、認証情報からAPIキーを作成する。APIキーを.envファイルのGOOGLE_BOOKS_API_KEY=の後ろに入力する。
 
 
