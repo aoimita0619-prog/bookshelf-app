@@ -17,18 +17,22 @@
 1. git clone git@github.com:aoimita0619-prog/bookshelf-app.git
 2. cd bookshelf-app
 3. Docker Desktopアプリを立ち上げる
-4. docker run --rm \
+4.
+```bash
+　　 docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v "$(pwd):/var/www/html" \
     -w /var/www/html \
     laravelsail/php82-composer:latest \
     composer install
+```
 5. cp .env.example .env
 6. ./vendor/bin/sail up -d
 7. ./vendor/bin/sail artisan key:generate
-8. ./vendor/bin/sail artisan migrate:fresh --seed
-
-9. Google Cloudにおいて、新規プロジェクトを作成する。ライブラリからBooksAPIを有効にし、認証情報からAPIキーを作成する。APIキーを.envファイルのGOOGLE_BOOKS_API_KEY=の後ろに入力する。
+8. ./vendor/bin/sail npm install
+9. ./vendor/bin/sail npm run build
+10. ./vendor/bin/sail artisan migrate:fresh --seed
+11. Google Cloudにおいて、新規プロジェクトを作成する。ライブラリからBooksAPIを有効にし、認証情報からAPIキーを作成する。APIキーを.envファイルのGOOGLE_BOOKS_API_KEY=の後ろに入力する。
 
 
 ## 実行環境
@@ -87,6 +91,8 @@
 - **リマインダー通知**
 - **読書計画自動失効**
 
+## 今後の課題
+Google Books APIは和書のカバー率が低い。そのため、和書の収録数が多いAPIをGoogle Books APIと併用していくことが今後の課題である。
 
 
 
