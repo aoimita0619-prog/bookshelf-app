@@ -19,12 +19,12 @@
 3. Docker Desktopアプリを立ち上げる
 4.
 ```bash
-　　 docker run --rm \
-    -u "$(id -u):$(id -g)" \
-    -v "$(pwd):/var/www/html" \
-    -w /var/www/html \
-    laravelsail/php82-composer:latest \
-    composer install
+docker run --rm \
+-u "$(id -u):$(id -g)" \
+-v "$(pwd):/var/www/html" \
+-w /var/www/html \
+laravelsail/php82-composer:latest \
+composer install
 ```
 5. cp .env.example .env
 6. ./vendor/bin/sail up -d
