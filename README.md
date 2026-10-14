@@ -44,8 +44,7 @@
 
 
 ## ER図
-![ER図](./ER.drawio.svg)
-
+<img src="ER.drawio.svg" alt="ER図">
 
 ## テーブル設計
 - **usersテーブル　アカウントを記録するテーブル**
@@ -67,7 +66,6 @@
 - **name: 高橋健太, email: takahashi@example.com, password: password**
 
 ## テスト
-本アプリでは、
 ###　単体テスト
 - **モデル**
 
